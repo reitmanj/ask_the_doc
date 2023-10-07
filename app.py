@@ -8,7 +8,7 @@ from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 import sqlite3
 
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 def generate_response(uploaded_file, openai_api_key, query_text):
     
