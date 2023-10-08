@@ -1,9 +1,9 @@
 import pysqlite3
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-
 import streamlit as st
 import sqlite3
+
 from langchain.llms import OpenAI
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -19,7 +19,7 @@ def generate_response(uploaded_file, openai_api_key, query_text):
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     texts = text_splitter.create_documents(documents)
     # Select embeddings
-    embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+    embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model="gpt-4-32k",)
     # Create a vectorstore from documents
     db = Chroma.from_documents(texts, embeddings)
     # Create retriever interface
